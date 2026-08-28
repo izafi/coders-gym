@@ -93,6 +93,20 @@ An interactive filtering system allows users to filter products based on categor
 
 The filtering functionality is implemented using React's `useState`.
 
+Example:
+
+```jsx
+const [activeTab, setActiveTab] = useState("All");
+
+const filteredProducts =
+  activeTab === "All"
+    ? products
+    : products.filter(
+        (product) => product.category === activeTab
+      );
+
+      
+      This allows the UI to update dynamically without reloading the page.
 
 📝 Blog Section
 
