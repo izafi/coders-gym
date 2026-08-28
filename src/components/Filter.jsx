@@ -58,30 +58,46 @@ const Filter = () => {
       : products.filter((product) => product.category === activeTab);
 
   return (
-    <div className="bg-[#FFFFFF] h-auto w-full pt-25 pb-10">
-      <section>
-        <div className="flex flex-col gap-8 items-start justify-center h-[70%] pr-[4rem] pl-[4rem]">
+    <div className="bg-[#FFFFFF] h-auto w-full pt-16 sm:pt-20 lg:pt-25 pb-10 px-4 sm:px-6 lg:px-8">
+      
+      <section className="w-full max-w-[1280px] mx-auto">
+        
+        <div className="flex flex-col gap-8">
 
-          {/* Tabs */}
-          <div className="flex flex-row gap-3 items-center justify-start pl-5">
+          {/* ================= TABS ================= */}
+          <div className="flex flex-wrap gap-3 items-center justify-center sm:justify-start pl-0 sm:pl-2">
             {tabs.map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`text-base font-normal cursor-pointer px-4 py-2 rounded-[5px] flex items-center justify-center transition-all duration-300 ${
-                  activeTab === tab
-                    ? "text-white bg-[#FF8901]"
-                    : "text-[#374151] bg-[#E5E7EB] hover:bg-[#d1d5db]"
-                }`}
+                className={`
+                  text-sm
+                  sm:text-base
+                  font-normal
+                  cursor-pointer
+                  px-4
+                  py-2
+                  rounded-[5px]
+                  flex
+                  items-center
+                  justify-center
+                  transition-all
+                  duration-300
+                  ${
+                    activeTab === tab
+                      ? "text-white bg-[#FF8901]"
+                      : "text-[#374151] bg-[#E5E7EB] hover:bg-[#d1d5db]"
+                  }
+                `}
               >
                 {tab}
               </button>
             ))}
           </div>
 
-          {/* Cards */}
-          <div className="grid grid-cols-3 gap-5 min-h-[350px] max-w-[1280px]">
-
+          {/* ================= CARDS ================= */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 w-full">
+            
             {filteredProducts.map((product, index) => (
               <motion.div
                 key={product.id}
@@ -89,29 +105,77 @@ const Filter = () => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: false }}
-                className="flex flex-col gap-5 items-start justify-center h-auto p-3 bg-white rounded-[8px] cursor-pointer border-[2px] border-[#E5E7EB] shadow-2xl"
+                className="
+                  flex
+                  flex-col
+                  gap-4
+                  items-start
+                  justify-between
+                  h-full
+                  p-3
+                  bg-white
+                  rounded-[8px]
+                  cursor-pointer
+                  border-[2px]
+                  border-[#E5E7EB]
+                  shadow-xl
+                  hover:shadow-2xl
+                  hover:-translate-y-1
+                  transition-all
+                  duration-300
+                "
               >
-                <div className="flex flex-col gap-2 items-start justify-center w-full">
-
+                
+                {/* Image */}
+                <div className="flex flex-col gap-3 items-start justify-center w-full">
                   <img
-                    className="rounded-t-[8px] object-cover object-center w-full"
+                    className="
+                      rounded-t-[8px]
+                      object-cover
+                      object-center
+                      w-full
+                      h-[220px]
+                      sm:h-[240px]
+                      lg:h-[250px]
+                    "
                     src={product.image}
                     alt={product.title}
                   />
 
-                  <h1 className="text-black text-[24px] font-semibold text-left">
+                  {/* Title */}
+                  <h1
+                    className="
+                      text-black
+                      text-[20px]
+                      sm:text-[22px]
+                      lg:text-[24px]
+                      font-semibold
+                      text-left
+                    "
+                  >
                     {product.title}
                   </h1>
-
                 </div>
 
-                <p className="text-[#6b7280] text-[16px] font-normal text-left">
+                {/* Category */}
+                <p className="text-[#6b7280] text-[14px] sm:text-[16px] font-normal text-left">
                   {product.category}
                 </p>
+
               </motion.div>
             ))}
 
           </div>
+
+          {/* No Products */}
+          {filteredProducts.length === 0 && (
+            <div className="w-full flex items-center justify-center py-20">
+              <p className="text-gray-500 text-lg">
+                No products found.
+              </p>
+            </div>
+          )}
+
         </div>
       </section>
     </div>
