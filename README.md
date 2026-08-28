@@ -9,7 +9,7 @@ Coders Gym is designed with a clean and modern UI to showcase gym programs, fitn
 ## 🚀 Live Demo
 
 🔗 **Live Website:**  
-https://your-live-demo-link.com
+https://coders-gym-coral.vercel.app/
 
 ---
 
